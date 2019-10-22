@@ -2,7 +2,7 @@
   <section class="todoapp">
     <!-- header -->
     <header class="header">
-      <input class="new-todo" autocomplete="off" placeholder="Todo List" @keyup.enter="addTodo">
+      <input class="new-todo" autocomplete="off" placeholder="任务清单" @keyup.enter="addTodo">
     </header>
     <!-- main section -->
     <section v-show="todos.length" class="main">
@@ -22,8 +22,9 @@
     <!-- footer -->
     <footer v-show="todos.length" class="footer">
       <span class="todo-count">
+        剩余
         <strong>{{ remaining }}</strong>
-        {{ remaining | pluralize('item') }} left
+        条
       </span>
       <ul class="filters">
         <li v-for="(val, key) in filters" :key="key">
