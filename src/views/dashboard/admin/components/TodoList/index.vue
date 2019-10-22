@@ -48,14 +48,14 @@ const filters = {
   completed: todos => todos.filter(todo => todo.done)
 }
 const defalutList = [
-  { text: 'star this repository', done: false },
-  { text: 'fork this repository', done: false },
-  { text: 'follow author', done: false },
-  { text: 'vue-element-admin', done: true },
-  { text: 'vue', done: true },
-  { text: 'element-ui', done: true },
-  { text: 'axios', done: true },
-  { text: 'webpack', done: true }
+  { text: '吃饭', done: false },
+  { text: '拉屎', done: false },
+  { text: '睡觉', done: false },
+  { text: '看电影', done: true },
+  { text: '拉屎', done: true },
+  { text: '读书', done: true },
+  { text: '睡觉', done: true },
+  { text: '起床', done: true }
 ]
 export default {
   components: { Todo },
