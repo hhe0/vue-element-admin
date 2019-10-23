@@ -28,7 +28,7 @@
       </span>
       <ul class="filters">
         <li v-for="(val, key) in filters" :key="key">
-          <a :class="{ selected: visibility === key }" @click.prevent="visibility = key">{{ key | capitalize }}</a>
+          <a :class="{ selected: visibility === key }" @click.prevent="visibility = key">{{ langMap[key] }}</a>
         </li>
       </ul>
       <!-- <button class="clear-completed" v-show="todos.length > remaining" @click="clearCompleted">
@@ -46,6 +46,11 @@ const filters = {
   all: todos => todos,
   active: todos => todos.filter(todo => !todo.done),
   completed: todos => todos.filter(todo => todo.done)
+}
+const langMap = {
+  all: '全部',
+  active: '待完成',
+  completed: '已完成'
 }
 const defalutList = [
   { text: '吃饭', done: false },
@@ -67,6 +72,7 @@ export default {
     return {
       visibility: 'all',
       filters,
+      langMap,
       // todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || defalutList
       todos: defalutList
     }
