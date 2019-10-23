@@ -1,13 +1,13 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 15px;">
-    <el-table-column label="订单号" min-width="200">
+    <el-table-column label="周计划" min-width="200">
       <template slot-scope="scope">
         {{ scope.row.order_no | orderNoFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="价格" width="195" align="center">
+    <el-table-column label="截止时间" width="195" align="center">
       <template slot-scope="scope">
-        ¥{{ scope.row.price | toThousandFilter }}
+        {{ scope.row.price | toThousandFilter }}
       </template>
     </el-table-column>
     <el-table-column label="状态" width="100" align="center">
