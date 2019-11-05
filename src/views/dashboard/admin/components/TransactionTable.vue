@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { transactionList } from '@/api/remote-search'
+import { transactionList } from '../../../../../mock/remote-search'
 
 export default {
   filters: {
