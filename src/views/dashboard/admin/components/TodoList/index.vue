@@ -10,7 +10,7 @@
       <label for="toggle-all" />
       <ul class="todo-list">
         <todo
-          v-for="(todo, index) in filteredTodos"
+          v-for="(todo, index) in todos"
           :key="index"
           :todo="todo"
           @toggleTodo="toggleTodo"
@@ -40,6 +40,7 @@
 
 <script>
 import Todo from './Todo.vue'
+import { getTaskList, addTask } from '@/api/task'
 
 const STORAGE_KEY = 'todos'
 const filters = {
@@ -52,16 +53,7 @@ const langMap = {
   active: '待完成',
   completed: '已完成'
 }
-const defalutList = [
-  { text: '吃饭', done: false },
-  { text: '拉屎', done: false },
-  { text: '睡觉', done: false },
-  { text: '看电影', done: true },
-  { text: '拉屎', done: true },
-  { text: '读书', done: true },
-  { text: '睡觉', done: true },
-  { text: '起床', done: true }
-]
+
 export default {
   components: { Todo },
   filters: {
@@ -73,8 +65,7 @@ export default {
       visibility: 'all',
       filters,
       langMap,
-      // todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || defalutList
-      todos: defalutList
+      todos: []
     }
   },
   computed: {
@@ -88,12 +79,29 @@ export default {
       return this.todos.filter(todo => !todo.done).length
     }
   },
+  created() {
+    this.getList()
+  },
   methods: {
+    getList() {
+      getTaskList(1).then(response => {
+        console.log(response.data)
+        console.log(response.data.total)
+        this.todos = response.data.task_list
+        this.loading = false
+      })
+    },
     setLocalStorage() {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos))
     },
     addTodo(e) {
       const text = e.target.value
+      const data = { 'content': e.target.value }
+      addTask(data).then(response => {
+        console.log(text)
+        console.log(response.code)
+      })
+
       if (text.trim()) {
         this.todos.push({
           text,
